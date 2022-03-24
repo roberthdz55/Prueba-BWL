@@ -1,0 +1,13 @@
+{
+    "taskPendigs": [
+        {"name": "Ir al banco"},
+        {"name": "Ir con Robert"},
+        {"name": "Ir por chelas"}
+    ],
+    "tasksComplete": [
+        {"name": "Tomar chelas"},
+        {"name": "Fumar Mota"},
+        {"name": "Olvidar"}
+    ]
+
+}

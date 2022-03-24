@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    </script>
+
+    <link rel="stylesheet" href="../css/signin1.css">
+    
+    <!--<script src="../controllers/clima.js" defer></script> -->
+
+    <!-- Custom styles for this template -->
+
+</head>
+
+<body>
+
+    
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="table">
+                                <span data-feather="shopping-cart"></span>
+                                Tabla de Usuarios
+                            </a>
+                        </li>       
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Proyecto BWL</h1>
+                </div>
+
+                <div class="row">
+                    <div class="card">
+                        <div class="search">
+                            <input type="text" class="search-bar" placeholder="Search">
+                            <button><svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                    viewBox="0 0 1024 1024" height="1.5em" width="1.5em"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z">
+                                    </path>
+                                </svg></button>
+                        </div>
+                        <div class="weather loading">
+                            <h2 class="city">Weather in Denver</h2>
+                            <h1 class="temp">51°C</h1>
+                            <div class="flex">
+                                <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
+                                <div class="description">Cloudy</div>
+                            </div>
+                            <div class="horario">Humidity: 60%</div>
+                            <div class="wind">Wind speed: 6.2 km/h</div>
+                            <input type="hidden" id="idZona"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card1">
+                            <div class="card-body">
+                                <h5 class="card-title" id="divResultado"></h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="container">
+                                    <h1>Lista de Tareas</h1>
+                                    
+                                    <div class="empty"  >
+                                        <h2>Tareas pendientes</h2>
+                                        <div id="faltantes" class="empty">
+                                            
+                                        </div>     
+                                    </div>
+                                    <div class="empty" ></div>
+                                        <h2>Tareas Completadas</h2>
+                                        <div id="complet" class="empty"></div>
+
+                                        </div>              
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+        integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+        crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/locale/es.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.11/moment-timezone-with-data.js"></script>
+
+    <script>
+
+
+        // CONTROLADOR LA PINTAR LA API  
+        moment.locale('es-mx');
+        let weather = {
+            apiKey: "6786f420fdbc8502028ed060fbf64d38",
+            fetchWeather: function (city) {
+                fetch(
+                    "https://api.openweathermap.org/data/2.5/weather?q=" +
+                    city +
+                    "&units=metric&appid=" +
+                    this.apiKey
+                )
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert("No weather found.");
+                            throw new Error("No weather found.");
+                        }
+                        return response.json();
+                    })
+                    .then((data) => this.displayWeather(data));
+            },
+            displayWeather: function (data) {
+                const { name } = data;
+                const { icon, description } = data.weather[0];
+                const { temp, humidity } = data.main;
+                const { country } = data.sys;
+                let { timezone } = data;
+                document.getElementById("idZona").value = timezone;
+                function muevereloj() { 
+                    let timezoneInMinutes = document.getElementById("idZona").value / 60;
+                    let currTime = moment().utcOffset(timezoneInMinutes).format("h:mm:ss A dddd");
+                    let reloj = setTimeout(muevereloj, 1000)
+                    document.querySelector(".horario").innerText =
+                        "Zona Horaria: " + currTime;
+                }
+                console.log(data);
+                document.querySelector(".city").innerText = "El timpo en " + name;
+                document.querySelector(".icon").src =
+                    "https://openweathermap.org/img/wn/" + icon + ".png";
+                document.querySelector(".description").innerText = description;
+                document.querySelector(".temp").innerText = temp + "°C";
+                document.querySelector(".horario").innerText =
+                    "Zona Horaria: " + muevereloj();
+                document.querySelector(".wind").innerText =
+                    "Pais Seleccionado: " + country;
+                document.querySelector(".weather").classList.remove("loading");
+                //ocument.body.style.backgroundImage =
+                //"url('https://source.unsplash.com/1600x900/?" + name + "')";
+            },
+            search: function () {
+                this.fetchWeather(document.querySelector(".search-bar").value);
+            },
+        };
+        document.querySelector(".search button").addEventListener("click", function () {
+            weather.search();
+        });
+
+        document
+            .querySelector(".search-bar")
+            .addEventListener("keyup", function (event) {
+                if (event.key == "Enter") {
+                    weather.search();
+                }
+            });
+
+        weather.fetchWeather("Denver");
+
+        // CONTROLADOR LA PINTAR LAS TAREAS PENDIENTES
+          
+        window.addEventListener('DOMContentLoaded', event => {
+                listadeusuarios()
+            }
+        );
+        async function listadeusuarios(){
+
+            try {
+                const requestOptions = {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                };
+                const url1 = `http://localhost:3000/tareasComplet`;
+                const url2 = `http://localhost:3000/tareasFaltantes`;
+                const results = await Promise.all([fetch(url1, requestOptions), fetch(url2, requestOptions)])
+                const finalData = await Promise.all(results.map(result => result.json()));
+                let salida = ""
+                let salida2 = ""
+                finalData[1].forEach(tareas=>{
+                    salida += `<span> ${tareas.tareasfaltan}  </span>`
+                    
+
+                })
+                finalData[0].forEach(tareas=>{
+                    salida2 += `<span> ${tareas.tareaComplet} </span>`
+                    
+                })
+                document.getElementById("faltantes").innerHTML = salida;
+                document.getElementById("complet").innerHTML = salida2;
+                console.log(finalData)
+                return finalData;
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+
+
+    </script>
+
+
+
+</body>
+
+
+
+</html>

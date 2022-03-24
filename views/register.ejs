@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
+</head>
+
+<body id="register" >
+    <main class="form-signin shadow-lg p-3 mb-5" id="register">
+        <form action="/register" method="POST">
+            <img class="mb-4" src="img/logo.svg " alt="" width="72" height="57">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="user" class="form-label">Correo del Usuario</label>
+                <input type="text" class="form-control" id="user" name="user" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="pass" class="form-label">Password</label>
+                <input type="password" class="form-control" id="pass" name="pass">
+            </div>
+            <div class="mb-3">
+                <label for="pass2" class="form-label">Password</label>
+                <input type="password" class="form-control" id="pass2" name="pass2">
+            </div>
+            <a href="/" type="button" class="btn btn-secondary">Regresar</a>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </main>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if(alert) { %>
+        <script>
+            Swal.fire({
+                title: '<%= alertTitle %>',
+                text: '<%= alertMessage %>',
+                icon: '<%= alertIcon %>',
+                showConfirmButton: <%= showConfirmButton %>,
+                timer: <%= timer %>
+      }).then(() => {
+                    window.location = '/<%= ruta %>'
+                })
+        </script>
+        <% } %>
+</body>
+
+</html>
